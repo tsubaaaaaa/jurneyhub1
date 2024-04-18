@@ -1,0 +1,53 @@
+.newpost {
+  position: fixed;
+  left: 25%;
+  top:25%;
+  width: 50%; /* フォームの幅を設定します */
+  margin: 0 auto; /* 中央に配置します */
+  padding: 20px; /* 内側の余白を追加します */
+  border: 1px solid #cccccc00; /* 枠線を追加します */
+  border-radius: 10px; /* 角丸を設定します */
+  overflow: hidden;
+}
+
+.field {
+  margin-bottom: 20px; /* 各フィールドの下側マージンを設定します */
+}
+
+.field label {
+  font-weight: bold; /* ラベルのテキストを太字にします */
+  display: block; /* ラベルをブロック要素として配置します */
+}
+
+.field input[type="text"],
+.field textarea,
+.field input[type="file"] {
+  width: 100%; /* 入力フィールドの幅を100%にします */
+  padding: 10px; /* 入力フィールドの内側の余白を追加します */
+  border: 1px solid #ccc; /* 枠線を追加します */
+  border-radius: 5px; /* 角丸を設定します */
+  box-sizing: border-box; /* 全体の幅が変わらないようにボックスサイジングを設定します */
+}
+
+.field textarea {
+  resize: vertical; /* テキストエリアのリサイズを垂直方向に制限します */
+}
+
+.field input[type="file"] {
+  border: none; /* ファイル選択ボタンの枠線を削除します */
+  background-color: transparent; /* ファイル選択ボタンの背景色を透明にします */
+  padding: 0; /* ファイル選択ボタンの余白を削除します */
+}
+
+.btn {
+  padding: 10px 20px; /* ボタンの内側の余白を設定します */
+  border: none; /* ボタンの枠線を削除します */
+  border-radius: 5px; /* 角丸を設定します */
+  cursor: pointer; /* カーソルをポインターに変更します */
+  background-color: #8c98a4; /* ボタンの背景色を設定します */
+  color: #fff; /* ボタンのテキスト色を設定します */
+}
+
+.btn:hover {
+  background-color: #8aabd2; /* ホバー時の背景色を設定します */
+}

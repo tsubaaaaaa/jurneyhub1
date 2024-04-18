@@ -1,0 +1,11 @@
+<h3>タグリスト</h3>
+<% @tag1_list.each do |list| %>
+  <%= list.tag1_name %>
+  <%= "(#{list.hokkaidos.count})" %>
+<% end %>
+<br>
+<%= "#{@tag1.tag1_name}" %>
+<br>
+<% @hokkaidos.each do |hokkaido| %>
+  <%= link_to hokkaido.name, hokkaido %>
+<% end %>

@@ -1,0 +1,68 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.myhome{
+
+}
+.round-img {
+  border-radius: 50%;
+  max-width: 200px;
+}
+
+.myname{
+  position: absolute;
+  top: 40px;
+}
+
+.edit-profile-btn {
+  margin-right: 10px;
+  width: 20%;
+}
+
+.setting {
+  border: none;
+  background-color: transparent;
+}
+
+.mypost{
+  display: flex;
+}
+
+#map {
+  width: 100%
+}
+
+
+@media all and (min-width: 500px) {
+  .profile-wrap {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: calc(100vh - 120px);
+    top: 90px;
+    padding-bottom: 30px;
+    overflow: hidden;
+  }
+}
+
+.column {
+  display: flex; /* flex-containerにする */
+  flex: 1;
+  overflow: hidden;
+}
+
+.myinfo {
+  flex: 7; /* 幅の比率を設定 */
+  background-size: cover;
+  margin-right: 10px; /* Adjust margin as needed */
+  display: flex; /* 子要素を縦に並べるために追加 */
+  flex-direction: column; /* 子要素を縦に並べるために追加 */
+}
+
+.mymap {
+  flex: 3; /* 幅の比率を設定 */
+  margin-left: 10px; /* Adjust margin as needed */
+  background-size: cover;
+}

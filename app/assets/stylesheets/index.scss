@@ -1,0 +1,91 @@
+//search画面でのタグタイトル
+.searchtag{
+   position:fixed;
+   width: 100%;
+   top: 37px;
+   z-index: 999;
+   justify-content: center;
+}
+.searchtag_name{
+   height: 30px;
+}
+
+
+
+ul, li, figure, img {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+
+.postindex{
+   width: 100% ;
+   margin: 0 auto;
+   z-index: 500;
+}
+
+.container {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+ @media screen and (max-width: 450px) {
+   .container {
+      /* 2つ横並び */
+   }
+ }
+ 
+ @media screen and (min-width: 769px) and (max-width: 1040px) {
+   .container {
+     /* 3つ横並び */
+   }
+ }
+ 
+ @media screen and (min-width: 1025px) {
+   .container {
+     /* 4つ横並び */
+   }
+ }
+ 
+ .container li {
+   /*opacity: 0 ;  アニメーションでふわっと出すためあらかじめ透明度ゼロにしておく */
+   width: calc(25.00% - 1px); /* -1pxとしているのは、1px分隙間をつくるため */
+   /* max-width: 150px; 最大で幅150pxとしています */
+   margin: 0 0 1px 1px; /* 下と左に1px分、隙間をつくります */
+
+      }
+ /*@media screen and (max-width: 450px) {
+   .container li {
+     width: 45%; //2つ横並び 
+   }
+ }
+ 
+ @media screen and (min-width: 459px) and (max-width: 1024px) {
+   .container li {
+     width: 30%; // 3つ横並び 
+   }
+ }
+ 
+ @media screen and (min-width: 1025px) {
+   .container li {
+     width: 23%; // 4つ横並び 
+   }
+ }
+ */
+
+ .container li figure {
+   position: relative;
+   padding-top: 100%;
+}
+
+.container li figure img {
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 999;
+}
+

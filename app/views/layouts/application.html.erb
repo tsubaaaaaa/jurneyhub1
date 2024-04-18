@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HokkaidoMaps</title>
+    <script src="https://kit.fontawesome.com/f279302d6f.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <%= stylesheet_link_tag 'application.css', media: 'all' %>
+    <!--JQuery-->
+     <!--%= javascript_pack_tag 'application' , 'data-turbolinks-track': 'reload'%>
+    <!--フォント-->
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+  </head>
+
+      <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
+        
+        <!--%= link_to "JourneyHub.png", hokkaidos_top_path, class: "c-header__logo" %-->
+            <%= link_to hokkaidos_top_path do %>
+            <%= image_tag "JourneyHub_transparent.png", class:"header_image" %>
+            <% end %>
+        </div>
+<div>
+          <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
+            <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
+            <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
+                <li class="c-header__list-item">
+                  <%= link_to "Top", hokkaidos_top_path, class: "c-header__list-link" %>
+                </li>
+                <li class="c-header__list-item">
+                  <%= link_to "Map", hokkaidos_mapindex_path, class: "c-header__list-link" %>
+                </li>
+                <li class="c-header__list-item">
+                  <%= link_to "Index", hokkaidos_index_path, class: "c-header__list-link" %>
+                </li>
+                
+                <% if user_signed_in? %>
+                <li class="c-header__list-item">
+                  <%= link_to "My page",user_path(current_user.id), class: "c-header__list-link" %>
+                </li>
+<%
+=begin%> 
+                <li class="c-header__list-item">
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "c-header__list-link" %>
+                </li>
+<%
+=end%>
+                <li class="c-header__list-item">
+                  <%= link_to "New", hokkaidos_new_path, class: "c-header__list-link" %>
+                </li>
+                <%end%>
+            </ul>
+            <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
+          <span class="c-hamburger-menu__button-mark"></span>
+          <span class="c-hamburger-menu__button-mark"></span>
+          <span class="c-hamburger-menu__button-mark"></span>
+        </label>
+      </header>
+</div>
+<div>
+      <main>
+      <%=yield%>
+      </main>
+</div>
+       <footer>
+        <p></p>
+      </footer>
+
+</html>

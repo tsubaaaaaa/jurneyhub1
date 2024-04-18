@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<div class="newpost">
+<%= form_for(@hokkaido, :url => { controller:'hokkaidos', action:'create'})do |f| %>
+  <!--%= form_with(model: @hokkaido, local: true, class: "mt-4 form-column-width") do |f| %-->
+    <div class="field">
+      
+      <%= f.text_field :title, :size => 50, :placeholder => "Title"  %>
+    </div><br>
+    <div class="field">
+     
+      <%= f.text_field :name, :size => 50, :placeholder => "Name or Address"  %>
+    </div><br>
+    <div class="field">
+      
+      <%= f.text_area :body, :size => "50x5", :placeholder => "Your Jurney and Hushtags" %>
+    </div><br>
+    <div class="field">
+  
+      <%= f.file_field :image %>
+    </div><br>
+
+    <%= f.submit (@hokkaido.new_record? ? "投稿する" : "更新する"), class: "btn btn-primary mb-4" %>
+  <% end %>
+</div>

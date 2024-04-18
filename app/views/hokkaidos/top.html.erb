@@ -1,0 +1,81 @@
+<%
+=begin%>
+<h1>Discover Your Hokkaido</h1>
+
+
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+
+<%= javascript_include_tag 'top.js' %>
+<%
+=end%>
+<div class="box">
+  <div class="bgImg src1"></div>
+  <div class="bgImg src2"></div>
+  <div class="bgImg src3"></div>
+  <div class="bgImg src4"></div>
+
+<%
+=begin%>
+<form action="/hokkaidos" class="search-wrapper cf" method="get">
+    <input type="text" name="keywords" placeholder="検索" required>
+    <button type="submit"><span class="fontawesome-search"></span></button>
+</form>
+<%
+=end%>
+
+<div class="searchbox-container">
+<form action="/hokkaidos" class="search-wrapper cf" method="get">
+    <input type="text" name="keywords" placeholder="Where do you wanna go?" required>
+    <!-- button要素に背景画像を適用 -->
+    <button type="submit" style="background-image: url('http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png'); background-size: cover; width: 50px; height: 40px;"><span class="fontawesome-search" style="visibility: hidden;"></span></button>
+</form>
+</div>
+</div>
+
+<%
+=begin%>
+<h3>投稿を検索</h3>
+<div class="top_search_box">
+<%= form_tag({controller:"hokkaidos",action:"index"}, method: :get) do %>
+   <%= text_field_tag :keywords %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+</div>
+
+<h3>ワード検索</h3>
+<%= form_tag({controller:"hokkaidos", action:"index"}, method: :get) do %>
+  <%= text_field_tag :search, params[:tag1_ids], placeholder: "キーワードを入力してください" %>
+  <%= submit_tag '検索' %>
+<% end %>
+
+<h3>タグを検索</h3>
+<%= form_tag({controller:"hokkaidos",action:"index"}, method: :get) do %>
+    <%= text_field_tag :tag1_ids %>
+    <%= submit_tag '検索する'  %>
+<% end %>
+
+
+<h3>タグ検索のチェックボックス</h3>
+<%= form_tag({controller:"hokkaidos",action:"index"}, method: :get) do %>
+  <% Tag1.all.each do |t| %>
+    <div class = 'check_box'> 
+      <%= check_box :tag1_ids, t.tag1_name %><%= t.tag1_name %><%= "(#{t.hokkaidos.count})" %>
+    </div>
+  <% end %>
+  <%= submit_tag '検索' %>
+<% end %>
+<%
+=end%>
+
+
+
+<div class="taglist">
+    <% @hashtag_list.select { |list| list.hokkaidos.count > 0 }.sample(20).each do |list| %>
+    <div class='tags'>
+      <%= link_to list.hashname, hokkaidos_hashtag_path(name: list.hashname), class:"hashtaglink" %>
+    </div>
+    <% end %>
+</div>
+

@@ -1,0 +1,74 @@
+
+
+<div class="profile-wrap">
+   <div class="column myinfo">
+        <%= image_tag avatar_url(@user), class: "round-img" %>
+        <div class="myname"><%= @user.name %></div>
+        <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-outline-dark common-btn edit-profile-btn" %>
+        <%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
+        <p><%= @user.email %></p>
+        <h2>ユーザーの投稿一覧</h2>
+        <% @user.hokkaidos.each do |t| %>
+            <%= t.user.name %>
+            <%= t.body %>
+        <% end %>
+    </div>
+    <div class="column mymap">
+        <div id='map'></div>
+
+        <style>
+        #map {
+          
+        }
+        </style>
+
+        <!-- js部分 -->
+        <script>
+            function initMap() {
+
+              //初期表示位置
+              let latlng = new google.maps.LatLng(43.420962,142.781281);
+              //デザイン
+              let styles = [
+                  {
+                    stylers: [
+                    { "saturation": 0 },
+                    { "lightness": 0 }
+                    ]
+                  }
+                  ];
+
+              let map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 7,
+                  styles: styles,
+                  center: latlng
+              });
+              let transitLayer = new google.maps.TransitLayer();
+              transitLayer.setMap(map);
+
+        //複数マーカー ここから
+              <% @user.liked_hokkaidos.each do |hokkaido|%>
+                ( function() { 
+                  let markerLatLng = { lat: <%= hokkaido.latitude %>, lng: <%= hokkaido.longitude %> }; // 緯度経度のデータ作成
+                  let marker = new google.maps.Marker({ 
+                    position: markerLatLng, 
+                    map: map 
+                  });
+        //マーカーをクリックしたとき、詳細情報を表示
+                  let infowindow = new google.maps.InfoWindow({
+                    position: markerLatLng,
+                    content: "<a href='<%= hokkaido_url(hokkaido.id) %>' target='_blank'><%= hokkaido.name %></a>"
+                  }); //ここで詳細ページへのリンクを表示させる
+                  marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                  });
+
+              })();
+              <% end %>
+              //複数マーカー ここまで  
+          }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API'] %>&callback=initMap" async defer></script>
+     </div>
+</div>

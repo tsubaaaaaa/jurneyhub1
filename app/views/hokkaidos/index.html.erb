@@ -1,0 +1,110 @@
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+
+
+<div class="postindex">
+<ul class="container">
+  <% @hokkaidos.each do |t| %>
+  <li>
+    <figure>
+       <%= link_to hokkaido_path(t.id) do %>
+        <%= image_tag(t.image_url || "no_image.jpg", alt: "No Image") %>
+      <% end %>
+    </figure>
+  </li> 
+  <% end %>
+</ul>
+</div>
+<%= page_entries_info @hokkaidos %>
+<%= paginate @hokkaidos %>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(window).on('load scroll', function () { //スクロール及び読み込んだら実行
+      $('.container li').each(function () {
+          var elemOffset = $(this).offset().top; //指定した要素の位置 の変数
+          var scrollPos = $(window).scrollTop(); //スクロール量を取得する の変数
+          var wh = $(window).height()* 0.8; //ウィンドウの高さを取得する(画面を80％スクロールしたとき) の変数
+          if (scrollPos > elemOffset - wh) { //画面の80％スクロールすると要素にactiveクラスをつける
+              $(this).addClass("active");
+          }
+      });
+    });
+  </script>
+
+
+<%
+=begin%>
+<div class="hokkaidos-container">
+  <% @hokkaidos.each do |t| %>
+    <hr class="hr1">
+    <div class="hokkaidos">
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <%= image_tag t.image_url, size: "250x200" if t.image? %>
+        </div>
+        <div style="flex: 2;">
+          <div style="margin-left: 10px;">
+            <p>タイトル: <%= t.title %></p>
+            <p>名称: <%= t.name %></p>
+            <p>日時: <%= t.created_at %></p>
+            <p>投稿者: <%= t.user.email %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+<%
+=end%>
+
+<%
+=begin%>
+<% if user_signed_in? %>
+<div class="button-wrapper">
+  <% if current_user.already_liked?(t) %>
+    <%= button_to hokkaido_like_path(id: t.id, hokkaido_id: t.id), method: :delete, class: "btn-like" do %>
+      <span class="fa fa-heart like-btn-unlike"></span><%= t.likes.count %>
+    <% end %>
+  <% else %>
+    <%= button_to hokkaido_likes_path(id: t.id, hokkaido_id: t.id), method: :post, class: "btn-like" do %>
+      <span class="fa fa-heart like-btn"></span><%= t.likes.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>いいねの数 = <%= t.likes.count %></p>
+<% end %>
+</div>
+<%
+=end%>
+
+<%
+=begin%>
+<div class="button-wrapper">
+  <%= button_to "詳細へ", hokkaido_path(t.id), method: :get, class: "btn-details" %>
+  <% if user_signed_in? && current_user.id == t.user_id %>
+    <%= button_to "編集する", edit_hokkaido_path(t.id), method: :get, class: "btn-edit" %>
+    <%= button_to "削除する", hokkaido_path(t.id), method: :delete, class: "btn-delete" %>
+  <% end %>
+</div>
+<%
+=end%>
+
+
+
+
+<%
+=begin%>
+<%= form_tag({controller:"hokkaidos",action:"index"}, method: :get) do %>
+    <%= text_field_tag :tag1 %>
+    <%= submit_tag 'タグを追加' %>
+<% end %>
+
+<h3>タグリスト</h3>
+<% @tag1_list.each do |list| %>
+  #<%= link_to list.tag1_name, tag1_hokkaidos_path(tag1_id: list.id) %>
+  <%= "(#{list.hokkaidos.count})" %>
+<% end %>
+<%
+=end%>
+
+</div>

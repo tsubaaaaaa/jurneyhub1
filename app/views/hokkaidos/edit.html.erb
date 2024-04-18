@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'edit', :media => "all" %>
+
+<div class="newpost">
+    <%= form_for @hokkaido do |f| %>
+
+        <div class = "field">
+        <%= f.text_field :title, :size => 50, :placeholder => "Title"  %>
+        </div><br>
+
+        <div class = "field">
+              <%= f.text_field :name, :size => 50, :placeholder => "Name or Address"  %>
+        </div><br>
+
+        <div class="field">
+      
+      <%= f.text_area :body, :size => "50x5", :placeholder => "Your Jurney and Hushtags" %>
+        </div><br>
+        <div class="field">
+
+            <%= f.file_field :image %>
+        </div><br>
+
+    <!--<div class = "field">
+      <%= f.label :住所 %>
+      <%= f.text_field :address, :size => 50 %> 
+    </div>-->
+
+      <%= f.submit "更新する", class: "btn btn-primary mb-4" %>
+<% end %>
+
+</body>

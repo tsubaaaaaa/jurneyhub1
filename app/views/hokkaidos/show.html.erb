@@ -1,0 +1,164 @@
+
+<!--<h3>post詳細</h3>-->
+  
+
+     
+
+<div class="post-img-container">
+  <div class = "post-img"> 
+  <%= image_tag @hokkaido.image_url, size: "250x200" if @hokkaido.image? %><br>
+  </div>
+</div>
+
+<%
+=begin%>
+<h2>いいねしたユーザー</h2>
+<% @hokkaido.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+<%
+=end%>
+
+<div class="detail">
+        <div class = "post-title">
+          <div class="title"><%= @hokkaido.title %></div>
+        </div> 
+
+        <div class = "post-address">
+          <div class="address"><p><%= @hokkaido.address %></div>
+        </div>
+    
+              <div class="wrapper">
+                <div class="column map">
+                      <div id='map'></div>
+
+                      <style>
+                        #map {
+                        }
+                      </style>
+                      
+                    <script>
+                        
+                        function initMap() {
+
+                        // 地図の位置情報(緯度・経度)を取得
+                        let mapPosition = {lat: <%= @hokkaido.latitude || 0 %> , lng: <%= @hokkaido.longitude || 0 %> };
+                        let map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 15,
+                          center: mapPosition
+                        });
+                        
+                        let transitLayer = new google.maps.TransitLayer();
+                        transitLayer.setMap(map);
+
+                        let contentString = '【住所】<%= @hokkaido.address %>';
+                        let infowindow = new google.maps.InfoWindow({
+                          content: contentString
+                        });
+
+                        let marker = new google.maps.Marker({
+                          position: mapPosition,
+                          map: map,
+                          title: contentString
+                        });
+
+                        marker.addListener('click', function(){
+                          infowindow.open(map, marker);
+                        });
+                        }
+
+                    </script>
+
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GMAP_API'] %>&callback=initMap">
+                    </script>
+                </div>
+                <div class="column info">
+                    <div class = "post-body"> 
+                      <div class="post-caption"><%= render_with_hashtags(@hokkaido.body) %></div>
+                    </div>
+
+                    <div class="post-edit">
+                          <% if user_signed_in? %>
+                              <% if current_user.already_liked?(@hokkaido) %>
+                                  <%= button_to hokkaido_like_path(@hokkaido), method: :delete, class: "btn-like" do %>
+                                  <span class="fa fa-heart like-btn-unlike fa-fw"></span><%= @hokkaido.likes.count %>
+                                  <% end %>
+                                  <% else %>
+                                  <%= button_to hokkaido_likes_path(@hokkaido), method: :post, class: "btn-unlike" do %>
+                                  <span class="fa fa-heart like-btn fa-fw"></span><%= @hokkaido.likes.count %>
+                                  <% end %>
+                              <%end%>
+                          <% else %>
+                              <p>いいねの数% = </p><%= @hokkaido.likes.count %>
+                          <% end %>
+                      
+                          <%= button_to  edit_hokkaido_path(@hokkaido), method: :get, class: "btn-edit" do%>
+                          <i class="fa fa-pen-to-square fa-fw"></i>
+                          <% end %> 
+
+                          <%= button_to hokkaido_path(@hokkaido), method: :delete, class: "btn-delete" do%>
+                          <i class="fa fa-trash-can fa-fw"></i>
+                          <% end %> 
+                    </div>
+                </div>
+          </div>
+          
+        
+<%
+=begin%>
+        <div class="comment-wrapper">
+              <p>コメント一覧</p>
+              <% @comments.each do |c| %>
+                <div>
+                  <%= c.user.email unless c.user.blank? %>
+                  <br>
+                  <%= c.content %>
+                </div>
+                  <br>
+              <% end %>
+
+              <% if user_signed_in? %>
+                <%= form_with(model: [@hokkaido, @comment], local: true) do |f| %>
+                  <%= f.text_area :content %>
+                  <%= button_tag type: "submit" do %>
+                    <i class="far fa-comments"></i> コメントする
+                  <% end %>
+                <% end %>
+              <% end %>
+         </div>  
+<%
+=end%>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  const detail = document.querySelector(".detail");
+  const overlay = document.querySelector(".post-img-container");
+
+  // オーバーレイを表示する関数
+  function showOverlay() {
+    detail.style.display = "block";
+    overlay.style.pointerEvents = "none"; // オーバーレイのクリックイベントを無効化
+  }
+
+  // オーバーレイを非表示にする関数
+  function hideOverlay() {
+    detail.style.display = "none";
+    overlay.style.pointerEvents = "auto"; // オーバーレイのクリックイベントを有効化
+  }
+
+  // 外側のクリックでオーバーレイの表示と非表示を切り替える
+  overlay.addEventListener("click", function(event) {
+    if (event.target === overlay) {
+      if (detail.style.display === "block") {
+        hideOverlay();
+      } else {
+        showOverlay();
+      }
+    }
+  });
+});
+
+</script>

@@ -1,0 +1,147 @@
+.post-img-container {
+    width: 100%;
+    height: 100vh; /* ビューポートの高さに合わせる */
+    overflow: hidden; /* スクロールを禁止 */
+    position: fixed; /* 画面固定 */
+    top: 0;
+    left: 0;
+    z-index: 0; /* 背景よりも下に配置 */
+  }
+
+.post-img {
+    width: 100%; /* 親要素いっぱいに広がるように */
+    height: 100%; /* 親要素いっぱいに広がるように */
+  }
+  
+  .post-img img {
+    width: 100%; /* 親要素いっぱいに広がるように */
+    height: 100%; /* アスペクト比を保持しつつ幅いっぱいに広がるように */
+    object-fit: cover;
+    display: block; /* インライン要素をブロック要素に変更 */
+  }
+  
+
+.detail{
+  position: fixed;
+  top: 25%;
+  left: 20%;
+  z-index: 999;
+  margin: auto;
+  width: 60%; /* 例えば80%の幅 */
+  height: 50%; /* 例えば60%の高さ */
+  background-color: rgba(0, 0, 0, 0.375); /* 例えば白色の半透明の背景 */
+  padding: 20px;
+  border-radius: 10px; /* 角を丸くする */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 影を追加 */
+}
+
+
+
+.post-title{
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  top: 5%;
+}
+.title{
+  color: rgb(255, 255, 255);
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.post-address {
+  position: absolute;
+  width: 100%;
+  height: 7%;
+  top: 20%;
+}
+.address{
+  color: white;
+}
+
+@media all and (min-width: 500px) {
+  .wrapper {
+    position: absolute;
+    display: flex;
+    flex: wrap;
+    width: 100%;
+    height: 78%;
+    top: 22%;
+    
+  }
+}
+
+.column {
+  position:flex;
+  flex: 1;
+}
+.column map {
+  background-size: cover;
+  flex: 70%;
+  margin-right: 10px; /* Adjust margin as needed */
+  position: relative;
+}
+.column info {
+  margin-left: 10px; /* Adjust margin as needed */
+  background-size: cover;
+}
+
+.post-body{
+  top:7.5%;
+  left:10%;
+  width: 80%;
+  height: 75%;
+  line-height: 25px;
+  //border: 1px solid #ffffff00; /* 枠線を追加します */
+  padding: 10px; /* 内側の余白を追加します */
+  overflow-y: auto; /* コンテンツが枠からはみ出た場合にスクロールバーを表示します */
+  //background-color: #cccccc40;
+  position: relative; /* 相対位置指定 */
+}
+.post-caption{
+  color: white;
+  text-decoration: none;
+  gap: 5px;
+}
+
+.post-edit {
+  display: flex;
+    align-items: center; /* ボタンを縦方向に中央揃えします */
+    position: absolute; /* 絶対位置指定 */
+    bottom: 40px; /* 下端からの距離を調整 */
+    right: 30px; /* 右端からの距離を調整 */
+}
+
+.post-edit{
+  justify-content: center;
+}
+.post-edit button {
+  margin-right: 10px; /* ボタンの間隔を設定します */
+  color: white;
+  background-color: #bfb2b200;
+  border: 1px solid #ffffff00; /* 枠線を追加します */
+  font-size: large;
+}
+
+/* FontAwesomeアイコンのフォントサイズを調整します */
+.fa {
+  font-size: 20px; /* 適切なサイズに調整してください */
+}
+
+
+#map{
+  top:10%;
+  left:0%;
+  width: 30%;
+  height: 80%;
+}
+
+.comment-wrapper{
+  position: absolute;
+  bottom:10%;
+}
+
+.hashtag {
+  color: rgb(255, 255, 255);
+  //text-decoration: none;
+}

@@ -1,0 +1,22 @@
+<div class="searchtag">
+ <div class="searchtag_name">
+  #<%= @tag.hashname %>
+</div>
+</div>
+
+<div class="postindex">
+<ul class="container">
+  <% @hokkaidos.each do |t| %>
+  <li>
+    <figure>
+       <%= link_to hokkaido_path(t.id) do %>
+        <%= image_tag(t.image_url || "no_image.jpg", alt: "No Image") %>
+      <% end %>
+    </figure>
+  </li> 
+  <% end %>
+</ul>
+</div>
+<%= page_entries_info @hokkaidos %>
+<%= paginate @hokkaidos %>
+
