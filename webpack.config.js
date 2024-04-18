@@ -42,10 +42,7 @@ const config = {
 };
 
 module.exports = {
-  performance: {
-    maxEntrypointSize: [300000],
-    maxAssetSize: [300000]
-  },
+  performance: { hints: false },
   entry: {
       main :__dirname + "/main.js",
   },
