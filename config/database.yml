@@ -25,8 +25,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: jurneyhub_db_jmky
-  username: jurneyhub_db_jmky_user
-  password: PwaIBwbPHd9UBfZa4jlj1SANiUIMPWJa
-  host: dpg-cp1iq5gl5elc73eu4ia0-a
+  database: jurneyhub_db_t6xx
+  username: jurneyhub_db_t6xx_user
+  password: QUGVJkAwCJgSDtycVX0jpsgTqAC5D0Kj
+  host: dpg-cp1kka6ct0pc73d2n03g-a
   port: 5432 # デフォルトのPostgreSQLポート
