@@ -2,7 +2,7 @@ databases:
   - name: jurneyhub_DB
     databaseName: jurneyhub_db_jmky
     user: jurneyhub
-    region: singapore
+    region: oregon
 
 services:
   - type: web
