@@ -1,7 +1,7 @@
 databases:
   - name: jurneyhub_DB
-    databaseName: jurneyhub_db_t6xx
-    user: jurneyhub_db_t6xx_user
+    databaseName: jurneyhub_db_6s4i
+    user: jurneyhub
     region: singapore
 
 services:
