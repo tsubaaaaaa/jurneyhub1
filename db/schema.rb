@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 2024_04_14_074017) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "hokkaidos"
+  add_foreign_key "comments", "users"
   add_foreign_key "hokkaido_hashtag_relations", "hashtags"
   add_foreign_key "hokkaido_hashtag_relations", "hokkaidos"
   add_foreign_key "likes", "hokkaidos"
