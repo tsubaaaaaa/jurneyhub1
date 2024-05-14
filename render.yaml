@@ -1,6 +1,6 @@
 databases:
   - name: jurneyhub_DB
-    databaseName: jurneyhub_db
+    databaseName: jurneyhub_db_jmky
     user: jurneyhub
     region: singapore
 
