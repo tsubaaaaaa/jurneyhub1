@@ -1,8 +1,8 @@
 databases:
   - name: jurneyhub_DB
-    databaseName: jurneyhub_db_jmky
-    user: jurneyhub
-    region: oregon
+    databaseName: jurneyhub_db_t6xx
+    user: jurneyhub_db_t6xx_user
+    region: singapore
 
 services:
   - type: web
