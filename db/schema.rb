@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2024_04_14_074017) do
     t.string "image"
     t.integer "user_id"
     t.text "body"
+    t.string "address"
     t.float "latitude"
     t.float "longitude"
   end
