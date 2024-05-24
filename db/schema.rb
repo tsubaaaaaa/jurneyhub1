@@ -60,6 +60,12 @@ ActiveRecord::Schema.define(version: 2024_04_14_074017) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "tag1s", force: :cascade do |t|
+    t.string "tag1_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tag_maps", force: :cascade do |t|
     t.integer "hokkaido_id", null: false
     t.integer "tag1_id", null: false
