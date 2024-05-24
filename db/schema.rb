@@ -60,20 +60,20 @@ ActiveRecord::Schema.define(version: 2024_04_14_074017) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "tag1s", force: :cascade do |t|
-    t.string "tag1_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+  #create_table "tag1s", force: :cascade do |t|
+  #  t.string "tag1_name"
+  #  t.datetime "created_at", precision: 6, null: false
+  #  t.datetime "updated_at", precision: 6, null: false
+  #end
 
-  create_table "tag_maps", force: :cascade do |t|
-    t.integer "hokkaido_id", null: false
-    t.integer "tag1_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["hokkaido_id"], name: "index_tag_maps_on_hokkaido_id"
-    t.index ["tag1_id"], name: "index_tag_maps_on_tag1_id"
-  end
+  #create_table "tag_maps", force: :cascade do |t|
+  #  t.integer "hokkaido_id", null: false
+  #  t.integer "tag1_id", null: false
+  #  t.datetime "created_at", precision: 6, null: false
+  #  t.datetime "updated_at", precision: 6, null: false
+  #  t.index ["hokkaido_id"], name: "index_tag_maps_on_hokkaido_id"
+  #  t.index ["tag1_id"], name: "index_tag_maps_on_tag1_id"
+  #end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
